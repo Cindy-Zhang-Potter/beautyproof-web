@@ -1,0 +1,35 @@
+{
+  "id": "evidence_explainer_case_generator_1",
+  "pluginKey": "@official-plugins/ai-text-generate",
+  "pluginVersion": "1.0.21",
+  "name": "证据解释文案生成器",
+  "description": "根据Claim匹配结果流式生成可解释的Evidence Case文案，包含触发规则说明、数字差异、消费者解释三部分内容。",
+  "icon": "",
+  "paramsSchema": {
+    "type": "object",
+    "properties": {
+      "claim_match_result": {
+        "type": "string",
+        "description": "Claim匹配结果原始数据，包含匹配规则、涉及数值、相关上下文信息"
+      },
+      "business_scene": {
+        "type": "string",
+        "description": "业务场景标识，用于适配不同行业的解释话术风格"
+      }
+    },
+    "required": [
+      "claim_match_result"
+    ]
+  },
+  "formValue": {
+    "modelID": "2015",
+    "modelParams": {
+      "maxTokens": 8192,
+      "temperature": 0.5
+    },
+    "prompt": "你是一位专业的证据解释专员，擅长将规则匹配结果转化为清晰易懂的可解释文案。\n\n请基于以下Claim匹配结果生成Evidence Case文案：\nClaim匹配结果：{{input.claim_match_result}}\n业务场景：{{input.business_scene}}\n\n生成要求：\n1. 触发规则说明：清晰描述匹配到的具体规则内容、规则适用范围、触发条件，使用准确的术语说明\n2. 数字差异：重点对比匹配结果中的数值差异，包括基准值、实际值、差异幅度、差异原因分析\n3. 消费者解释：将上述内容转化为面向普通消费者的通俗易懂的解释话术，避免专业术语，说明对用户的影响及后续处理方式\n\n输出格式：\n【触发规则说明】\n[具体规则说明内容]\n\n【数字差异分析】\n[具体数值对比与差异说明]\n\n【消费者友好解释】\n[面向普通用户的易懂解释内容]\n\n内容要求：\n- 所有信息必须严格基于提供的Claim匹配结果，不得编造信息\n- 内容逻辑清晰，层次分明\n- 消费者解释部分语言口语化，易于理解，字数控制在150-300字之间"
+  },
+  "createdAt": 1791218632367,
+  "updatedAt": 1791218632367,
+  "createdBy": 7580873613637586117
+}

@@ -1,0 +1,38 @@
+{
+  "id": "beauty_claim_parser_1",
+  "pluginKey": "@official-plugins/ai-text-to-json",
+  "pluginVersion": "1.0.26",
+  "name": "美妆种草文案拆解工具",
+  "description": "将美妆种草文案拆解为原子Claim数组，每条包含text、category、status、ruleCode、explanation字段，用于美妆文案合规性分析",
+  "icon": "",
+  "paramsSchema": {
+    "type": "object",
+    "properties": {
+      "beauty_copy": {
+        "type": "string",
+        "description": "待拆解的美妆种草文案内容"
+      }
+    },
+    "required": [
+      "beauty_copy"
+    ]
+  },
+  "formValue": {
+    "modelID": "2015",
+    "modelParams": {
+      "temperature": 0.5,
+      "maxTokens": 8192
+    },
+    "prompt": "你是专业的美妆文案合规分析专家，请将以下美妆种草文案拆解为独立的原子Claim（宣传声称），每个Claim对应一个具体的宣传点，不要合并多个声称。\n\n待拆解文案：{{input.beauty_copy}}\n\n拆解规则：\n1. 每个Claim是一个独立、完整的宣传声称\n2. 准确提取文案中的原始表述，不要篡改原意\n3. 对每个Claim进行分类、合规性判定并给出解释",
+    "jsonStructure": [
+      {
+        "name": "claims",
+        "paramType": "Array",
+        "paramDescription": "原子Claim数组，items schema: {text: string(宣传声称的原始文本内容), category: string(声称分类，可选值：功效声称、成分声称、安全声称、体验声称、其他), status: string(合规性状态，可选值：合规、违规、待验证), ruleCode: string(对应法规条款编码，如无则填空字符串), explanation: string(对该声称合规性判断的详细解释)}"
+      }
+    ]
+  },
+  "createdAt": 1791218632626,
+  "updatedAt": 1791218632626,
+  "createdBy": 7580873613637586117
+}
